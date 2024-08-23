@@ -36,6 +36,7 @@ namespace DotNetToJScript
             JScript,
             VBA,
             VBScript,
+            HTAJScript
         }
 
         private const string VERSION = "v1.0.4";
@@ -208,6 +209,9 @@ namespace DotNetToJScript
                         break;
                     case ScriptLanguage.VBScript:
                         generator = new VBScriptGenerator();
+                        break;
+                    case ScriptLanguage.HTAJScript:
+                        generator = new HTAJScriptGenerator();
                         break;
                     default:
                         throw new ArgumentException("Invalid script language option");
