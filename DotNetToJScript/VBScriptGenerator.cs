@@ -63,6 +63,8 @@ namespace DotNetToJScript
                     case RuntimeVersion.Auto:
                         builder.AppendLine(Properties.Resources.vb_multi_auto_version_script);
                         break;
+                    default:
+                        throw new ArgumentException("Invalid runtime version option");
                 }
             }
             builder.AppendLine("End Sub");

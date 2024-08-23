@@ -1,8 +1,18 @@
 var shell = new ActiveXObject('WScript.Shell');
-ver = 'v4.0.30319';
+var regKey = 'HKLM\\SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full\\InstallPath';
 try {
-shell.RegRead('HKLM\\SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319\\');
-} catch(e) { 
-ver = 'v2.0.50727';
-}
+    // Try to read the InstallPath for .NET Framework
+    var installPath = shell.RegRead(regKey);
+    if (installPath) {
+        // Extract version from the InstallPath
+        var versionMatch = installPath.match(/\\v([0-9.]+)\\$/);
+        if (versionMatch && versionMatch.length > 1) {
+            ver = 'v' + versionMatch[1];
+        } else {
+        var ver = 'v2.0.50727'; // Default fallback version   
+        }
+    }
+} catch (e) {
+    var ver = 'v2.0.50727'; // Default fallback version
+}    
 shell.Environment('Process')('COMPLUS_Version') = ver;

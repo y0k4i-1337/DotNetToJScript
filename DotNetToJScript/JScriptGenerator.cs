@@ -38,6 +38,8 @@ namespace DotNetToJScript
                 case RuntimeVersion.v4:
                     builder.AppendLine("new ActiveXObject('WScript.Shell').Environment('Process')('COMPLUS_Version') = 'v4.0.30319';");
                     break;
+                default:
+                    throw new ArgumentException("Invalid runtime version option");
             }
             builder.AppendLine("}");
             builder.Append("function debug(s) {");
