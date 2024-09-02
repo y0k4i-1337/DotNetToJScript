@@ -63,3 +63,34 @@ file which should work in Office Macros or '-l vbscript' for VBScript.
 
 Finally by default the tool will output to stdout, you can output direct to a file
 using the -o switch.
+
+## Additions in this fork
+
+Key modifications include:
+  - Support for creating HTA file with embbeded JScript;
+  - When `-v` is set to Auto, the script will fetch version information from registry keys instead of hard-coded values;
+  - Improved exception handling when passing invalid arguments.
+
+
+## Usage
+
+```
+ .\DotNetToJScript.exe -h
+Usage: DotNetToJScript v1.0.4 [options] path\to\asm
+Copyright (C) James Forshaw 2017. Licensed under GPLv3.
+Source code at https://github.com/tyranid/DotNetToJScript
+Options
+  -n                         Build a script which only uses mscorlib.
+  -m                         Build a scriptlet file in moniker format.
+  -u                         Build a scriptlet file in uninstall format.
+  -d                         Enable debug output from script
+  -l, --lang=VALUE           Specify script language to use (JScript, VBA,
+                               VBScript, HTAJScript)
+  -v, --ver=VALUE            Specify .NET version to use (None, v2, v4, Auto)
+  -o=VALUE                   Specify output file (default is stdout).
+  -c=VALUE                   Specify entry class name (default TestClass)
+  -s=VALUE                   Specify file with additional script. 'o' is
+                               created instance.
+      --clsid=VALUE          Specify a CLSID for the scriptlet
+  -h, --help                 Show this message and exit
+```
